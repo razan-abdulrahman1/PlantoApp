@@ -6,14 +6,24 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CC7DF5B330AC41A6006F94A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CC7DF5B230AC41A0006F94A6 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		CC7DF54730A1A8B5006F94A6 /* PlantoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlantoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7DF54730A1A8B5006F94A6 /* Planto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7DF5B230AC41A0006F94A6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CC7DF54930A1A8B5006F94A6 /* PlantoApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PlantoApp;
+			sourceTree = "<group>";
+		};
+		CC7DF5B430AC4685006F94A6 /* Screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -30,6 +40,8 @@
 		CC7DF53E30A1A8B5006F94A6 = {
 			isa = PBXGroup;
 			children = (
+				CC7DF5B430AC4685006F94A6 /* Screenshots */,
+				CC7DF5B230AC41A0006F94A6 /* README.md */,
 				CC7DF54930A1A8B5006F94A6 /* PlantoApp */,
 				CC7DF54830A1A8B5006F94A6 /* Products */,
 			);
@@ -38,7 +50,7 @@
 		CC7DF54830A1A8B5006F94A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC7DF54730A1A8B5006F94A6 /* PlantoApp.app */,
+				CC7DF54730A1A8B5006F94A6 /* Planto.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -46,9 +58,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC7DF54630A1A8B5006F94A6 /* PlantoApp */ = {
+		CC7DF54630A1A8B5006F94A6 /* Planto */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC7DF55230A1A8B6006F94A6 /* Build configuration list for PBXNativeTarget "PlantoApp" */;
+			buildConfigurationList = CC7DF55230A1A8B6006F94A6 /* Build configuration list for PBXNativeTarget "Planto" */;
 			buildPhases = (
 				CC7DF54330A1A8B5006F94A6 /* Sources */,
 				CC7DF54430A1A8B5006F94A6 /* Frameworks */,
@@ -58,10 +70,11 @@
 			);
 			fileSystemSynchronizedGroups = (
 				CC7DF54930A1A8B5006F94A6 /* PlantoApp */,
+				CC7DF5B430AC4685006F94A6 /* Screenshots */,
 			);
-			name = PlantoApp;
+			name = Planto;
 			productName = PlantoApp;
-			productReference = CC7DF54730A1A8B5006F94A6 /* PlantoApp.app */;
+			productReference = CC7DF54730A1A8B5006F94A6 /* Planto.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -93,7 +106,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC7DF54630A1A8B5006F94A6 /* PlantoApp */,
+				CC7DF54630A1A8B5006F94A6 /* Planto */,
 			);
 		};
 /* End PBXProject section */
@@ -102,6 +115,7 @@
 		CC7DF54530A1A8B5006F94A6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				CC7DF5B330AC41A6006F94A6 /* README.md in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -234,7 +248,7 @@
 			};
 			name = Release;
 		};
-		CC7DF55330A1A8B6006F94A6 /* Debug configuration for PBXNativeTarget "PlantoApp" */ = {
+		CC7DF55330A1A8B6006F94A6 /* Debug configuration for PBXNativeTarget "Planto" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -243,6 +257,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Planto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -265,7 +280,7 @@
 			};
 			name = Debug;
 		};
-		CC7DF55430A1A8B6006F94A6 /* Release configuration for PBXNativeTarget "PlantoApp" */ = {
+		CC7DF55430A1A8B6006F94A6 /* Release configuration for PBXNativeTarget "Planto" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -274,6 +289,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Planto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,11 +323,11 @@
 			);
 			defaultConfigurationName = Release;
 		};
-		CC7DF55230A1A8B6006F94A6 /* Build configuration list for PBXNativeTarget "PlantoApp" */ = {
+		CC7DF55230A1A8B6006F94A6 /* Build configuration list for PBXNativeTarget "Planto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CC7DF55330A1A8B6006F94A6 /* Debug configuration for PBXNativeTarget "PlantoApp" */,
-				CC7DF55430A1A8B6006F94A6 /* Release configuration for PBXNativeTarget "PlantoApp" */,
+				CC7DF55330A1A8B6006F94A6 /* Debug configuration for PBXNativeTarget "Planto" */,
+				CC7DF55430A1A8B6006F94A6 /* Release configuration for PBXNativeTarget "Planto" */,
 			);
 			defaultConfigurationName = Release;
 		};

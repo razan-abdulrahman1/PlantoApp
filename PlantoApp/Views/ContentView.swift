@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-//Home States
+// Home States
 enum HomeState {
     case welcome
     case empty
@@ -15,10 +15,11 @@ enum HomeState {
 }
 
 struct ContentView: View {
-    @State var state: HomeState = .welcome // Temporary: the ViewModel will decide this later
-    @State var isShowingForm = false
     @State var viewModel = RemindersViewModel()
-    
+    @State var isShowingForm = false
+    @State var reminderToEdit: PlantReminder? = nil
+    // the plant being edited
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
 
@@ -32,10 +33,12 @@ struct ContentView: View {
 
             // Content
             Group {
-                switch state {
+                switch viewModel.homeState {
                 case .welcome: WelcomeView(onSetReminder: { isShowingForm = true })
                 case .empty: EmptyStateView()
-                case .list: Text("\(viewModel.reminders.count) plants") // Temporary placeholder
+                case .list: RemindersListView(viewModel: viewModel, onEdit: { reminder in
+                    reminderToEdit = reminder
+                })
                 case .allDone: AllDoneView()
                 }
             }
@@ -43,7 +46,7 @@ struct ContentView: View {
         }
         // Add Button
         .overlay(alignment: .bottomTrailing) {
-            if state != .welcome {
+            if viewModel.homeState != .welcome {
                 Button("Add Reminder", systemImage: "plus") {
                     isShowingForm = true
                 }
@@ -55,31 +58,19 @@ struct ContentView: View {
                 .padding(24)
             }
         }
-        // Set Reminder Sheet
+        // Add Sheet
         .sheet(isPresented: $isShowingForm) {
             ReminderFormView(viewModel: viewModel)
         }
+        // Edit Sheet (opens when reminderToEdit has a plant)
+        .sheet(item: $reminderToEdit) { reminder in
+            ReminderFormView(viewModel: viewModel, reminderToEdit: reminder)
+        }
     }
-    }
-
-
-// Previews
-#Preview("Welcome") {
-    ContentView(state: .welcome)
-        .preferredColorScheme(.dark)
 }
 
-#Preview("Empty") {
-    ContentView(state: .empty)
-        .preferredColorScheme(.dark)
-}
-
-#Preview("List") {
-    ContentView(state: .list)
-        .preferredColorScheme(.dark)
-}
-
-#Preview("All Done") {
-    ContentView(state: .allDone)
+// Preview
+#Preview {
+    ContentView()
         .preferredColorScheme(.dark)
 }

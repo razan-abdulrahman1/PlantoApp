@@ -13,7 +13,10 @@ struct InfoChip: View {
     let color: Color
 
     var body: some View {
-        Label(text, systemImage: icon)
+        HStack(spacing: 4) {
+    Image(systemName: icon)
+    Text(text)
+}
             .font(.caption)
             .foregroundStyle(color)
             .padding(.horizontal, 8)

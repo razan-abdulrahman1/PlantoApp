@@ -8,9 +8,10 @@ import SwiftUI
 
 struct ReminderFormView: View {
     let viewModel: RemindersViewModel
+    var reminderToEdit: PlantReminder? = nil   // NEW: nil = add, has value = edit
     @Environment(\.dismiss) private var dismiss
 
-    // Form Fields 
+    // Form Fields
     @State private var plantName = ""
     @State private var room: Room = .bedroom
     @State private var light: Light = .fullSun
@@ -67,9 +68,18 @@ struct ReminderFormView: View {
                         Label("Water", systemImage: "drop")
                     }
                 }
+
+                // Delete (edit mode only)
+                if reminderToEdit != nil {
+                    Section {
+                        Button("Delete Reminder", role: .destructive) {
+                            deleteReminder()
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                }
             }
-            .tint(.primary) // White icons, like the design
-            
+            .tint(.primary)
             .navigationTitle("Set Reminder")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -80,24 +90,68 @@ struct ReminderFormView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save", systemImage: "checkmark") {
-                        let newPlant = PlantReminder(
-                            name: plantName,
-                            room: room,
-                            light: light,
-                            wateringFrequency: wateringFrequency,
-                            waterAmount: waterAmount
-                        )
-                        viewModel.add(newPlant)
-                        dismiss()
+                        saveReminder()
                     }
                     .tint(.primaryGreen)
+                    .disabled(plantName.isEmpty)             // can't save without a name
                 }
+            }
+            .onAppear {
+                fillFields()
             }
         }
     }
+
+    // Actions 
+
+    // In edit mode, show the plant's saved values
+    private func fillFields() {
+        if let reminder = reminderToEdit {
+            plantName = reminder.name
+            room = reminder.room
+            light = reminder.light
+            wateringFrequency = reminder.wateringFrequency
+            waterAmount = reminder.waterAmount
+        }
+    }
+
+    // Add a new plant, or update the edited one
+    private func saveReminder() {
+        if let reminder = reminderToEdit {
+            var updatedReminder = reminder
+            updatedReminder.name = plantName
+            updatedReminder.room = room
+            updatedReminder.light = light
+            updatedReminder.wateringFrequency = wateringFrequency
+            updatedReminder.waterAmount = waterAmount
+            viewModel.update(updatedReminder)
+        } else {
+            let newPlant = PlantReminder(
+                name: plantName,
+                room: room,
+                light: light,
+                wateringFrequency: wateringFrequency,
+                waterAmount: waterAmount
+            )
+            viewModel.add(newPlant)
+        }
+        dismiss()
+    }
+
+    // Delete the edited plant
+    private func deleteReminder() {
+        if let reminder = reminderToEdit {
+            viewModel.delete(reminder)
+        }
+        dismiss()
+    }
 }
 
+// Shown as a sheet, like in the app
 #Preview {
-    ReminderFormView(viewModel: RemindersViewModel())
+    Color.black
+        .sheet(isPresented: .constant(true)) {
+            ReminderFormView(viewModel: RemindersViewModel())
+        }
         .preferredColorScheme(.dark)
 }

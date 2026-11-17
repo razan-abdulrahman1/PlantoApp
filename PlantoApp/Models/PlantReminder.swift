@@ -15,4 +15,21 @@ struct PlantReminder: Identifiable {
     var wateringFrequency: WateringFrequency
     var waterAmount: WaterAmount
     var lastWateredDate: Date? = nil
+
+    // Is the plant watered for now? (based on its own schedule)
+    var isDone: Bool {
+        if let lastWateredDate = lastWateredDate {
+            // Count the days since the last watering
+            let calendar = Calendar.current
+            let wateredDay = calendar.startOfDay(for: lastWateredDate)
+            let today = calendar.startOfDay(for: Date())
+            let daysPassed = calendar.dateComponents([.day], from: wateredDay, to: today).day ?? 0
+
+            // Done while the next watering day hasn't come yet
+            return daysPassed < wateringFrequency.days
+        }
+
+        // Never watered = not done
+        return false
+    }
 }
