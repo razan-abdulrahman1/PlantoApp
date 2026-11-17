@@ -18,8 +18,7 @@
 ## Screenshots
 | Welcome | Set Reminder | My Plants | All Done |
 |:---:|:---:|:---:|:---:|
-| ![Welcome](Screenshots/welcome.png) | ![Set Reminder](Screenshots/set-reminder.png) | ![My Plants](Screenshots/list.png) | ![All Done](Screenshots/all-done.png) |
----
+| <img src="Screenshots/welcome.png" width="200"/> | <img src="Screenshots/set-reminder.png" width="200"/> | <img src="Screenshots/list.png" width="200"/> | <img src="Screenshots/all-done.png" width="200"/> |
 
 ## Built With
 
