@@ -14,14 +14,14 @@ struct InfoChip: View {
 
     var body: some View {
         HStack(spacing: 4) {
-    Image(systemName: icon)
-    Text(text)
-}
-            .font(.caption)
-            .foregroundStyle(color)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(.chipBackground, in: RoundedRectangle(cornerRadius: 6))
+            Image(systemName: icon)
+            Text(text)
+        }
+        .font(.caption)
+        .foregroundStyle(color)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(.chipBackground, in: RoundedRectangle(cornerRadius: 6))
     }
 }
 

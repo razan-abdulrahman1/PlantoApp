@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct PlantReminder: Identifiable {
-    let id = UUID()
+struct PlantReminder: Identifiable, Codable {
+    var id = UUID()                             
     var name: String
     var room: Room
     var light: Light

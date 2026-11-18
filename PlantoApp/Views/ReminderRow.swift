@@ -27,7 +27,7 @@ struct ReminderRow: View {
                 HStack(spacing: 4) {
                     Image(systemName: "location")
                     Text("in \(reminder.room.rawValue)")
-                }                                                 
+                }
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
@@ -36,7 +36,7 @@ struct ReminderRow: View {
                     .foregroundStyle(reminder.isDone ? Color.secondary : Color.primary)
 
                 HStack {
-                    InfoChip(icon: "sun.max", text: reminder.light.rawValue, color: .chipSunlight)
+                    InfoChip(icon: reminder.light.icon, text: reminder.light.rawValue, color: .chipSunlight)
                     InfoChip(icon: "drop", text: reminder.waterAmount.rawValue, color: .chipWater)
                 }
             }

@@ -16,8 +16,8 @@ struct AllDoneView: View {
                 .scaledToFit()
                 .frame(width: 164)
                 .padding(24) // Space between the plant and the circle edge
-                .background(.illustrationBackground.opacity(0.58), in: Circle())
-                .accessibilityHidden(true) 
+                .background(.illustrationBackground, in: Circle()) // the color already has 58% opacity
+                .accessibilityHidden(true)
 
             // Title
             Text("All Done! 🎉")

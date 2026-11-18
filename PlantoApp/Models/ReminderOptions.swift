@@ -7,7 +7,7 @@
 import Foundation
 
 // Room
-enum Room: String, CaseIterable, Identifiable {
+enum Room: String, CaseIterable, Identifiable, Codable {
     case bedroom = "Bedroom"
     case livingRoom = "Living Room"
     case kitchen = "Kitchen"
@@ -18,16 +18,25 @@ enum Room: String, CaseIterable, Identifiable {
 }
 
 // Light
-enum Light: String, CaseIterable, Identifiable {
+enum Light: String, CaseIterable, Identifiable, Codable {
     case fullSun = "Full sun"
     case partialSun = "Partial sun"
     case lowLight = "Low light"
 
     var id: Self { self }
+
+    // SF Symbol for each light level (matches the design)
+    var icon: String {
+        switch self {
+        case .fullSun: "sun.max"
+        case .partialSun: "sun.haze"
+        case .lowLight: "moon"
+        }
+    }
 }
 
 // Watering Frequency
-enum WateringFrequency: String, CaseIterable, Identifiable {
+enum WateringFrequency: String, CaseIterable, Identifiable, Codable {
     case everyDay = "Every day"
     case every2Days = "Every 2 days"
     case every3Days = "Every 3 days"
@@ -51,7 +60,7 @@ enum WateringFrequency: String, CaseIterable, Identifiable {
 }
 
 // Water Amount
-enum WaterAmount: String, CaseIterable, Identifiable {
+enum WaterAmount: String, CaseIterable, Identifiable, Codable {
     case ml20to50 = "20-50 ml"
     case ml50to100 = "50-100 ml"
     case ml100to200 = "100-200 ml"

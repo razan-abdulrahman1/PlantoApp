@@ -1,4 +1,4 @@
-//
+///
 //  ReminderFormView.swift
 //  PlantoApp
 //
@@ -8,7 +8,7 @@ import SwiftUI
 
 struct ReminderFormView: View {
     let viewModel: RemindersViewModel
-    var reminderToEdit: PlantReminder? = nil   // NEW: nil = add, has value = edit
+    var reminderToEdit: PlantReminder? = nil   // nil = add, has value = edit
     @Environment(\.dismiss) private var dismiss
 
     // Form Fields
@@ -102,7 +102,7 @@ struct ReminderFormView: View {
         }
     }
 
-    // Actions 
+    // Actions
 
     // In edit mode, show the plant's saved values
     private func fillFields() {

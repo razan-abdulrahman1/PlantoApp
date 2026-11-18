@@ -10,8 +10,33 @@ import Observation
 
 @Observable
 class RemindersViewModel {
-    var reminders: [PlantReminder] = []
-    var hasAddedBefore = false
+    // Save the list every time it changes
+    var reminders: [PlantReminder] = [] {
+        didSet { save() }
+    }
+
+    // Save it every time it changes
+    var hasAddedBefore = false {
+        didSet { UserDefaults.standard.set(hasAddedBefore, forKey: "hasAddedBefore") }
+    }
+
+    // Load the saved data when the app opens
+    init() {
+        hasAddedBefore = UserDefaults.standard.bool(forKey: "hasAddedBefore")
+
+        if let data = UserDefaults.standard.data(forKey: "reminders") {
+            if let saved = try? JSONDecoder().decode([PlantReminder].self, from: data) {
+                reminders = saved
+            }
+        }
+    }
+
+    // Turn the list into data and save it
+    func save() {
+        if let data = try? JSONEncoder().encode(reminders) {
+            UserDefaults.standard.set(data, forKey: "reminders")
+        }
+    }
 
     // Home State
     // Decides which screen ContentView shows
@@ -83,4 +108,4 @@ class RemindersViewModel {
             }
         }
     }
-        }
+}

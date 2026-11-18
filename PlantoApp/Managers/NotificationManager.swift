@@ -9,7 +9,7 @@ enum NotificationManager {
 
     // Ask the user to allow notifications
     static func requestPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
     }
 
     // Schedule a reminder at 9 AM on the plant's next watering day
