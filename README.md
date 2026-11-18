@@ -17,8 +17,6 @@
 
 ## Screenshots
 | Welcome | Set Reminder | My Plants | All Done |
-|:---:|:---:|:---:|:---:|
-<<<<<<< Updated upstream
 | <img src="Screenshots/welcome.png" width="200"/> | <img src="Screenshots/set-reminder.png" width="200"/> | <img src="Screenshots/list.png" width="200"/> | <img src="Screenshots/all-done.png" width="200"/> |
 
 =======
