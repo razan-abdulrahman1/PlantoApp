@@ -23,7 +23,12 @@ struct PlantReminder: Identifiable, Codable {
             let calendar = Calendar.current
             let wateredDay = calendar.startOfDay(for: lastWateredDate)
             let today = calendar.startOfDay(for: Date())
-            let daysPassed = calendar.dateComponents([.day], from: wateredDay, to: today).day ?? 0
+            
+            // the gap between the two days
+            let difference = calendar.dateComponents([.day], from: wateredDay, to: today)
+
+            // the number of days in that gap
+            let daysPassed = difference.day ?? 0
 
             // Done while the next watering day hasn't come yet
             return daysPassed < wateringFrequency.days

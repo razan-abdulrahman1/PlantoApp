@@ -25,7 +25,7 @@ enum Light: String, CaseIterable, Identifiable, Codable {
 
     var id: Self { self }
 
-    // SF Symbol for each light level (matches the design)
+    // SF Symbol for each light level
     var icon: String {
         switch self {
         case .fullSun: "sun.max"

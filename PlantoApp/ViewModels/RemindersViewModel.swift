@@ -8,8 +8,18 @@
 import Foundation
 import Observation
 
+// Which screen the home page shows
+enum HomeState {
+    case welcome
+    case empty
+    case list
+    case allDone
+}
+
 @Observable
 class RemindersViewModel {
+
+    // Data
     // Save the list every time it changes
     var reminders: [PlantReminder] = [] {
         didSet { save() }
@@ -31,11 +41,18 @@ class RemindersViewModel {
         }
     }
 
+    // Saving
     // Turn the list into data and save it
     func save() {
         if let data = try? JSONEncoder().encode(reminders) {
             UserDefaults.standard.set(data, forKey: "reminders")
         }
+    }
+
+    // Helper
+    // Find where this plant is in the list
+    private func findIndex(of reminder: PlantReminder) -> Int? {
+        return reminders.firstIndex(where: { item in item.id == reminder.id })
     }
 
     // Home State
@@ -77,6 +94,7 @@ class RemindersViewModel {
     }
 
     // Actions
+    // Add a new plant and schedule its reminder
     func add(_ reminder: PlantReminder) {
         reminders.append(reminder)
         hasAddedBefore = true
@@ -84,21 +102,24 @@ class RemindersViewModel {
         NotificationManager.schedule(for: reminder)
     }
 
+    // Replace the plant with its edited version
     func update(_ reminder: PlantReminder) {
-        if let index = reminders.firstIndex(where: { item in item.id == reminder.id }) {
+        if let index = findIndex(of: reminder) {
             reminders[index] = reminder
             NotificationManager.cancel(for: reminder)        // remove the old schedule
             NotificationManager.schedule(for: reminder)      // add the new schedule
         }
     }
 
+    // Remove the plant and its reminder
     func delete(_ reminder: PlantReminder) {
         reminders.removeAll(where: { item in item.id == reminder.id })
         NotificationManager.cancel(for: reminder)
     }
 
+    // Tap the circle: water the plant, or undo
     func toggleDone(_ reminder: PlantReminder) {
-        if let index = reminders.firstIndex(where: { item in item.id == reminder.id }) {
+        if let index = findIndex(of: reminder) {
             if reminders[index].isDone {
                 reminders[index].lastWateredDate = nil      // Undo
             } else {

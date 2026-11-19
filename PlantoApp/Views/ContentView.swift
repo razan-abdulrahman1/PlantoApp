@@ -4,21 +4,15 @@
 //
 //  Created by Razan on 29/05/1448 AH.
 //
+
 import SwiftUI
 
-// Home States
-enum HomeState {
-    case welcome
-    case empty
-    case list
-    case allDone
-}
-
 struct ContentView: View {
+
+    // State
     @State var viewModel = RemindersViewModel()
-    @State var isShowingForm = false
-    @State var reminderToEdit: PlantReminder? = nil
-    // the plant being edited
+    @State var isShowingForm = false                       // true = add form is open
+    @State var reminderToEdit: PlantReminder? = nil        // the plant being edited
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -31,7 +25,7 @@ struct ContentView: View {
 
             Divider()
 
-            // Content
+            // Content (one screen for each home state)
             Group {
                 switch viewModel.homeState {
                 case .welcome: WelcomeView(onSetReminder: { isShowingForm = true })
@@ -44,7 +38,8 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        // Add Button
+
+        // Add Button (hidden on the welcome screen)
         .overlay(alignment: .bottomTrailing) {
             if viewModel.homeState != .welcome {
                 Button("Add Reminder", systemImage: "plus") {
@@ -58,10 +53,12 @@ struct ContentView: View {
                 .padding(24)
             }
         }
+
         // Add Sheet
         .sheet(isPresented: $isShowingForm) {
             ReminderFormView(viewModel: viewModel)
         }
+
         // Edit Sheet (opens when reminderToEdit has a plant)
         .sheet(item: $reminderToEdit) { reminder in
             ReminderFormView(viewModel: viewModel, reminderToEdit: reminder)

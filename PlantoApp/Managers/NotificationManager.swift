@@ -30,7 +30,8 @@ enum NotificationManager {
         dateComponents.hour = 9
         dateComponents.minute = 0
 
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        // let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)   // TEST ONLY
 
         let request = UNNotificationRequest(
             identifier: reminder.id.uuidString,

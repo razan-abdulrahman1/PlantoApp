@@ -1,4 +1,4 @@
-///
+//
 //  ReminderFormView.swift
 //  PlantoApp
 //
@@ -8,7 +8,8 @@ import SwiftUI
 
 struct ReminderFormView: View {
     let viewModel: RemindersViewModel
-    var reminderToEdit: PlantReminder? = nil   // nil = add, has value = edit
+    var reminderToEdit: PlantReminder? = nil
+    // nil = add, has value = edit
     @Environment(\.dismiss) private var dismiss
 
     // Form Fields
@@ -82,6 +83,8 @@ struct ReminderFormView: View {
             .tint(.primary)
             .navigationTitle("Set Reminder")
             .navigationBarTitleDisplayMode(.inline)
+
+            // Toolbar: Cancel and Save
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", systemImage: "xmark") {
@@ -93,7 +96,7 @@ struct ReminderFormView: View {
                         saveReminder()
                     }
                     .tint(.primaryGreen)
-                    .disabled(plantName.isEmpty)             // can't save without a name
+                    .disabled(plantName.trimmingCharacters(in: .whitespaces).isEmpty)   // can't save without a name
                 }
             }
             .onAppear {
